@@ -4,6 +4,7 @@
     "broccoli-concat": "0.0.8",
     "broccoli-less-single": "git+https://github.com/lfridael/broccoli-less-single.git",
     "broccoli-merge-trees": "^0.1.4",
+    "broccoli-sprite": "0.0.6",
     "broccoli-static-compiler": "^0.1.4",
     "broccoli-uglify-js": "^0.1.3"
   }

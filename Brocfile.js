@@ -3,6 +3,7 @@ var pickFiles = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
 var less = require("broccoli-less-single");
 var uglifyJs = require('broccoli-uglify-js');
+var sprite = require('broccoli-sprite');
 
 /* broccoli-less-single is not installed from its original location as we need less 1.7 */
 
@@ -10,6 +11,10 @@ var APP_NAME = "the-app";
 var ENV_DEVELOPMENT = process.argv.indexOf("serve") >= 0;
 
 var app = "app"
+
+/**
+ * JavaScript
+ */
 
 var appJsFiles = pickFiles(app, {
 	srcDir: "js",
@@ -47,6 +52,21 @@ var js = concat(jsFiles, {
 	outputFile: "/" + APP_NAME + ".js"
 });
 
+/**
+ * Sprites
+ */
+
+var sprites = sprite(app, {
+	src: ['sprites/**/*.png'],
+	spritePath: 'assets/sprites.png',
+	stylesheetPath: 'sprites.less',
+	stylesheet: 'less',
+});
+
+/**
+ * CSS
+ */
+
 var bootstrapLessFiles = pickFiles(app, {
 	srcDir: "bower_components/bootstrap/less",
 	files: ["**/*.less"],
@@ -59,8 +79,8 @@ var appLessFiles = pickFiles(app, {
 	destDir: "/"
 });
 
-var css = less([bootstrapLessFiles, appLessFiles], "app.less", APP_NAME + ".css", {
+var css = less([bootstrapLessFiles, appLessFiles, pickFiles(sprites, { srcDir: "/", files: ["**/*.less"], destDir: "/" })], "app.less", APP_NAME + ".css", {
 	compress: !ENV_DEVELOPMENT
 });
 
-module.exports = mergeTrees([js, css, "public"]);
+module.exports = mergeTrees([js, css, "public", pickFiles(sprites, { srcDir: "/", files: ["**/*.png"], destDir: "/" })]);
