@@ -1,4 +1,5 @@
 {
+  "name": "my-site",
   "devDependencies": {
     "broccoli": "^0.12.3",
     "broccoli-concat": "0.0.8",

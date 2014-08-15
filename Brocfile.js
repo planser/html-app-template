@@ -1,13 +1,13 @@
-var concat = require('broccoli-concat');
-var pickFiles = require('broccoli-static-compiler');
-var mergeTrees = require('broccoli-merge-trees');
+var concat = require("broccoli-concat");
+var pickFiles = require("broccoli-static-compiler");
+var mergeTrees = require("broccoli-merge-trees");
 var less = require("broccoli-less-single");
-var uglifyJs = require('broccoli-uglify-js');
-var sprite = require('broccoli-sprite');
+var uglifyJs = require("broccoli-uglify-js");
+var sprite = require("broccoli-sprite");
 
 /* broccoli-less-single is not installed from its original location as we need less 1.7 */
 
-var APP_NAME = "the-app";
+var APP_NAME = "my-site";
 var ENV_DEVELOPMENT = process.argv.indexOf("serve") >= 0;
 
 /**
@@ -55,10 +55,10 @@ var js = concat(jsFiles, {
  */
 
 var sprites = sprite("app", {
-	src: ['sprites/**/*.png'],
-	spritePath: 'assets/sprites.png',
-	stylesheetPath: 'sprites.less',
-	stylesheet: 'less',
+	src: ["sprites/**/*.png"],
+	spritePath: "assets/sprites.png",
+	stylesheetPath: "sprites.less",
+	stylesheet: "less",
 });
 
 /**
