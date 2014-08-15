@@ -10,26 +10,24 @@ var sprite = require('broccoli-sprite');
 var APP_NAME = "the-app";
 var ENV_DEVELOPMENT = process.argv.indexOf("serve") >= 0;
 
-var app = "app"
-
 /**
  * JavaScript
  */
 
-var appJsFiles = pickFiles(app, {
+var appJsFiles = pickFiles("app", {
 	srcDir: "js",
 	destDir: "/"
 });
 
-var jQueryJsFiles = pickFiles(app, {
-	srcDir: "bower_components/jquery/dist",
+var jQueryJsFiles = pickFiles("bower_components", {
+	srcDir: "jquery/dist",
 	files: ["**/*.js"],
 	destDir: "/"
 });
 
 /* Consider to import only needed js files */
-var boostrapJsFiles = pickFiles(app, {
-	srcDir: "bower_components/bootstrap/dist/js",
+var boostrapJsFiles = pickFiles("bower_components", {
+	srcDir: "bootstrap/dist/js",
 	files: ["**/*.js"],
 	destDir: "/"
 });
@@ -37,7 +35,7 @@ var boostrapJsFiles = pickFiles(app, {
 var jsFiles = mergeTrees([appJsFiles, jQueryJsFiles, boostrapJsFiles]);
 
 if (ENV_DEVELOPMENT) {
-	jsFiles = mergeTrees([jsFiles, pickFiles(app, {
+	jsFiles = mergeTrees([jsFiles, pickFiles("app", {
 		srcDir: "env",
 		files: ["livereload.js"],
 		destDir: "/"
@@ -56,7 +54,7 @@ var js = concat(jsFiles, {
  * Sprites
  */
 
-var sprites = sprite(app, {
+var sprites = sprite("app", {
 	src: ['sprites/**/*.png'],
 	spritePath: 'assets/sprites.png',
 	stylesheetPath: 'sprites.less',
@@ -67,13 +65,13 @@ var sprites = sprite(app, {
  * CSS
  */
 
-var bootstrapLessFiles = pickFiles(app, {
-	srcDir: "bower_components/bootstrap/less",
+var bootstrapLessFiles = pickFiles("bower_components", {
+	srcDir: "bootstrap/less",
 	files: ["**/*.less"],
 	destDir: "/"
 })
 
-var appLessFiles = pickFiles(app, {
+var appLessFiles = pickFiles("app", {
 	srcDir: "less",
 	files: ["**/*.less"],
 	destDir: "/"
