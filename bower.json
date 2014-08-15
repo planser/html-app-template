@@ -1,0 +1,6 @@
+{
+  "name": "my-project",
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
