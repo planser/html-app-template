@@ -1,4 +1,4 @@
 html-app-template
 =================
 
-An template for simple HTML apps using broccoli, Bootstrap, less, sprites (GraphicsMagick is required) and livereload.
+A simple template for simple HTML apps using broccoli, Bootstrap, less, sprites (GraphicsMagick is required) and livereload.
