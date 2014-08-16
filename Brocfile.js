@@ -21,14 +21,14 @@ var appJsFiles = pickFiles("app", {
 
 var jQueryJsFiles = pickFiles("bower_components", {
 	srcDir: "jquery/dist",
-	files: ["**/*.js"],
+	files: ["jquery.js"],
 	destDir: "/"
 });
 
 /* Consider to import only needed js files */
 var boostrapJsFiles = pickFiles("bower_components", {
 	srcDir: "bootstrap/dist/js",
-	files: ["**/*.js"],
+	files: ["bootstrap.js"],
 	destDir: "/"
 });
 
